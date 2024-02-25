@@ -44,15 +44,10 @@ vim.opt.splitkeep = "cursor"
 vim.opt.clipboard = "unnamedplus"
 
 -- color scheme
-require("rose-pine").setup({
+require("solarized-osaka").setup({
 	styles = {
-		italic = false,
-		transparency = true,
-	},
-
-	highlight_groups = {
-		Comment = { italic = true },
+		keywords = { italic = false },
 	},
 })
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme solarized-osaka")

@@ -37,7 +37,24 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "solarized-osaka": "solarized-osaka"
+      }
+    },
+    "solarized-osaka": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706161171,
+        "narHash": "sha256-mX55sCnfMYs6owU54/1AdyJ2EVrE5gR9ubqRCHgf10c=",
+        "owner": "craftzdog",
+        "repo": "solarized-osaka.nvim",
+        "rev": "f6e66670e31c09cfb7142a16d5dc2f26d2a31a40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "craftzdog",
+        "repo": "solarized-osaka.nvim",
+        "type": "github"
       }
     },
     "systems": {
