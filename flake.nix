@@ -60,6 +60,7 @@
           nvim-colorizer-lua
           nvim-web-devicons
           nvim-notify
+          vim-be-good
         ];
 
         dependencies = with pkgs; [
