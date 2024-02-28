@@ -37,13 +37,6 @@
           ];
         };
 
-        customRC = ''
-          lua << EOF
-              package.path = "${self}/?.lua;" .. package.path
-              ${pkgs.lib.readFile ./init.lua}
-          EOF
-        '';
-
         plugins = with pkgs.vimPlugins; [
           solarized-osaka
           oil-nvim
@@ -89,30 +82,55 @@
           ripgrep
           nodePackages.typescript-language-server
           nodePackages.prettier
-          nodePackages.eslint_d
+          eslint_d
           lua-language-server
           stylua
           nil
           alejandra
         ];
+
+        defaultPlugin = {
+          plugin = null;
+          config = null;
+          # if optional is true the plugin can be lazy loaded with :packadd! plugin
+          optional = false;
+          runtime = {};
+        };
+
+        # map plugins to an attrset { plugin = <plugin>; config = <config>; optional = <tf>; ... }
+        normalizedPlugins = map (x:
+          defaultPlugin
+          // (
+            if x ? plugin
+            then x
+            else {plugin = x;}
+          ))
+        plugins;
+
+        neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
+          viAlias = true;
+          vimAlias = true;
+          withNodeJs = false;
+          withPython3 = false;
+          withRuby = false;
+          plugins = normalizedPlugins;
+        };
+
+        luaRcContent = ''
+          package.path = "${self}/?.lua;" .. package.path
+          ${pkgs.lib.readFile ./init.lua}
+        '';
+
+        wrapperArgs = pkgs.lib.escapeShellArgs neovimConfig.wrapperArgs + " " + ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}"'';
       in rec {
-        packages.neovim-flake =
-          pkgs.wrapNeovim pkgs.neovim-unwrapped {
-            viAlias = true;
-            vimAlias = true;
-            withNodeJs = false;
-            withPython3 = false;
-            withRuby = false;
-            extraMakeWrapperArgs = ''--prefix PATH : "${pkgs.lib.makeBinPath dependencies}"'';
-            configure = {
-              inherit customRC;
-              packages.myPlugins = {
-                start = plugins;
-                opt = [];
-              };
-            };
+        packages.neovim-flake = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped (
+          neovimConfig
+          // {
+            inherit luaRcContent;
+            inherit wrapperArgs;
+            wrapRc = true;
           }
-          // {buildInputs = dependencies;};
+        );
 
         apps.neovim-flake = flake-utils.lib.mkApp {
           drv = packages.neovim-flake;
