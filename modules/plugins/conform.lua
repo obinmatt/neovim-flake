@@ -16,15 +16,3 @@ require("conform").setup({
 		lua = { "stylua" },
 	},
 })
-
--- organize imports for ts/js files
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-	callback = function()
-		vim.lsp.buf.execute_command({
-			command = "_typescript.organizeImports",
-			arguments = { vim.api.nvim_buf_get_name(0) },
-			title = "Typescript organize imports",
-		})
-	end,
-})

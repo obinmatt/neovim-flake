@@ -20,31 +20,31 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
 	opts.desc = "Show available code actions"
-	buf_set_keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
 	opts.desc = "Show LSP implementations"
-	buf_set_keymap("n", "li", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", opts)
+	buf_set_keymap("n", "<space>li", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", opts)
 
 	opts.desc = "Show LSP type definitions"
-	buf_set_keymap("n", "lt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>", opts)
+	buf_set_keymap("n", "<space>lt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>", opts)
 
 	opts.desc = "Show LSP definitions"
-	buf_set_keymap("n", "ld", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
+	buf_set_keymap("n", "<space>ld", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
 
 	opts.desc = "Show LSP diagnostics"
-	buf_set_keymap("n", "lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", opts)
+	buf_set_keymap("n", "<space>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", opts)
 
 	opts.desc = "Show LSP references"
-	buf_set_keymap("n", "lr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
+	buf_set_keymap("n", "<space>lr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
+
+	opts.desc = "Toggle LSP rename"
+	buf_set_keymap("n", "<space>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 
 	opts.desc = "Go to previous diagnostic"
 	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 
 	opts.desc = "Go to next diagnostic"
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
-
-	opts.desc = "Toggle LSP rename"
-	buf_set_keymap("n", "lR", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 end
 
 -- broadcast that nvim-cmp supports additional completion capabilities
@@ -55,6 +55,7 @@ local capabilities =
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	single_file_support = true,
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },
@@ -73,5 +74,31 @@ lspconfig.nil_ls.setup({
 	capabilities = capabilities,
 })
 
+-- function to organize imports using tsserver
+local function organizeImports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+	}
+	vim.lsp.buf.execute_command(params)
+end
+
 -- configure typescript server
-lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	single_file_support = false,
+	settings = {
+		typescript = {
+			completions = {
+				completeFunctionCalls = true,
+			},
+		},
+	},
+	commands = {
+		OrganizeImports = {
+			organizeImports,
+			description = "Organize Imports",
+		},
+	},
+})
