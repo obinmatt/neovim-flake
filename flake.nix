@@ -57,7 +57,6 @@
           cmp-nvim-lsp
           cmp-buffer
           cmp-path
-          cmp-cmdline
           undotree
           nvim-lint
           conform-nvim
