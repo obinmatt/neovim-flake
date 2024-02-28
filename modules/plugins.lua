@@ -1,3 +1,4 @@
+require("modules.plugins.lualine")
 require("modules.plugins.telescope")
 require("modules.plugins.treesitter")
 require("modules.plugins.lspconfig")
