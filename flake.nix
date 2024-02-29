@@ -40,6 +40,8 @@
         plugins = with pkgs.vimPlugins; [
           solarized-osaka
           oil-nvim
+          mini-nvim
+          neodev-nvim
           lualine-nvim
           plenary-nvim
           telescope-nvim
@@ -47,7 +49,6 @@
           nvim-treesitter.withAllGrammars
           nvim-ts-context-commentstring
           nvim-ts-autotag
-          nvim-autopairs
           nvim-lspconfig
           lspkind-nvim
           luasnip
@@ -65,10 +66,14 @@
           which-key-nvim
           dressing-nvim
           comment-nvim
+          indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua
           nvim-web-devicons
+          nvim-spectre
+          flash-nvim
           nvim-notify
+          vim-illuminate
           vim-be-good
         ];
 

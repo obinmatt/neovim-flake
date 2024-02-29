@@ -1,5 +1,13 @@
+require("neodev").setup({})
+
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
+vim.diagnostic.config({
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
 
 -- this function will run when an LSP connects to a buffer
 local on_attach = function(_, bufnr)

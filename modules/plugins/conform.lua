@@ -1,5 +1,10 @@
 require("conform").setup({
 	notify_on_error = true,
+	format = {
+		timeout_ms = 3000,
+		async = false,
+		quiet = false,
+	},
 	format_on_save = {
 		timeout_ms = 500,
 		lsp_fallback = true,
