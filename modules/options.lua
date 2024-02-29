@@ -42,10 +42,15 @@ vim.opt.splitkeep = "cursor"
 vim.opt.clipboard = "unnamedplus"
 
 -- color scheme
-require("solarized-osaka").setup({
+require("catppuccin").setup({
+	flavour = "mocha",
+	transparent_background = true,
 	styles = {
-		keywords = { italic = false },
+		conditionals = {},
+	},
+	integrations = {
+		notify = true,
 	},
 })
 
-vim.cmd("colorscheme solarized-osaka")
+vim.cmd("colorscheme catppuccin")

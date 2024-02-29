@@ -1,4 +1,3 @@
-require("modules.plugins.lualine")
 require("modules.plugins.telescope")
 require("modules.plugins.treesitter")
 require("modules.plugins.lspconfig")
@@ -24,6 +23,7 @@ require("modules.plugins.indentscope")
 
 -- plugins without extensive config
 require("oil").setup({})
+require("lualine").setup({})
 require("which-key").register({})
 require("todo-comments").setup({})
 require("dressing").setup({})
