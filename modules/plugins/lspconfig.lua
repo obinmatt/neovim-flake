@@ -40,7 +40,7 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap("n", "<space>ld", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
 
 	opts.desc = "Show LSP diagnostics"
-	buf_set_keymap("n", "<space>lD", "<cmd>lua require('telescope.builtin').diagnostics()<cr>", opts)
+	buf_set_keymap("n", "<space>lD", "<cmd>lua require('trouble').toggle()<cr>", opts)
 
 	opts.desc = "Show LSP references"
 	buf_set_keymap("n", "<space>lr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)

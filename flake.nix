@@ -22,9 +22,11 @@
 
         plugins = with pkgs.vimPlugins; [
           catppuccin-nvim
+          undotree
           oil-nvim
           mini-nvim
           neodev-nvim
+          trouble-nvim
           lualine-nvim
           plenary-nvim
           telescope-nvim
@@ -41,14 +43,12 @@
           cmp-nvim-lsp
           cmp-buffer
           cmp-path
-          undotree
           nvim-lint
           conform-nvim
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
           dressing-nvim
-          comment-nvim
           indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua

@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"help",
 		"notify",
+		"undotree",
 		"toggleterm",
 		"oil_preview",
 		"oil",
