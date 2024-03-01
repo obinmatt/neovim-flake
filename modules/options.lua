@@ -1,3 +1,6 @@
+vim.opt.title = true
+vim.opt.colorcolumn = "80"
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -33,6 +36,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.spell = true
 vim.opt.spelllang = "en"
+vim.opt.spelloptions = "camel"
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
