@@ -25,7 +25,6 @@
           undotree
           oil-nvim
           mini-nvim
-          neodev-nvim
           trouble-nvim
           lualine-nvim
           plenary-nvim
