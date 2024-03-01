@@ -47,6 +47,7 @@
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
+          inc-rename-nvim
           dressing-nvim
           indent-blankline-nvim
           todo-comments-nvim

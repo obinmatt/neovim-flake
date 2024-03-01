@@ -8,6 +8,7 @@ require("modules.plugins.colorizer")
 require("modules.plugins.spectre")
 require("modules.plugins.flash")
 require("modules.plugins.illuminate")
+require("modules.plugins.increname")
 require("modules.plugins.ibl")
 
 -- mini.nvim
