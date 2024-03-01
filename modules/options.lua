@@ -1,5 +1,4 @@
 vim.opt.title = true
-vim.opt.colorcolumn = "80"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
