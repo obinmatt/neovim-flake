@@ -53,9 +53,9 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
 end
 
--- broadcast that nvim-cmp supports additional completion capabilities
+-- broadcast that neovim supports additional completion capabilities with nvim-cmp
 local capabilities =
-	vim.tbl_extend("keep", vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
+	vim.tbl_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
 
 -- configure lua server
 lspconfig.lua_ls.setup({
@@ -65,9 +65,14 @@ lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },
-			-- get the language server to recognize the 'vim' global
-			diagnostics = { globals = { "vim", "string", "require" } },
-			workspace = { checkThirdParty = false },
+			workspace = {
+				checkThirdParty = false,
+				-- tells lua_ls where to find all the lua files in your config
+				library = {
+					"${3rd}/luv/library",
+					unpack(vim.api.nvim_get_runtime_file("", true)),
+				},
+			},
 			telemetry = { enable = false },
 			completion = { enable = true, callSnippet = "Replace" },
 		},
