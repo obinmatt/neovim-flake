@@ -91,3 +91,12 @@ require("catppuccin").setup({
 	},
 })
 vim.cmd("colorscheme catppuccin")
+
+-- disable some builtin plugins
+vim.g.loaded_gzip = 0
+vim.g.loaded_tar = 0
+vim.g.loaded_tarPlugin = 0
+vim.g.loaded_zipPlugin = 0
+vim.g.loaded_2html_plugin = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
