@@ -26,7 +26,6 @@
           oil-nvim
           mini-nvim
           trouble-nvim
-          lualine-nvim
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim
@@ -51,11 +50,11 @@
           dressing-nvim
           indent-blankline-nvim
           todo-comments-nvim
-          nvim-colorizer-lua
-          nvim-web-devicons
-          nvim-spectre
           flash-nvim
           nvim-notify
+          nvim-spectre
+          nvim-colorizer-lua
+          nvim-web-devicons
           vim-illuminate
           vim-be-good
         ];
