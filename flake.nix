@@ -25,6 +25,7 @@
           undotree
           oil-nvim
           mini-nvim
+          fidget-nvim
           trouble-nvim
           plenary-nvim
           telescope-nvim
@@ -51,7 +52,6 @@
           indent-blankline-nvim
           todo-comments-nvim
           flash-nvim
-          nvim-notify
           nvim-spectre
           nvim-colorizer-lua
           nvim-web-devicons

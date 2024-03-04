@@ -4,4 +4,4 @@ require("inc_rename").setup({
 
 vim.keymap.set("n", "<leader>rn", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
-end, { desc = "Toggle IncRename", expr = true })
+end, { noremap = true, silent = true, expr = true, desc = "Toggle IncRename" })

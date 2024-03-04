@@ -8,6 +8,7 @@ require("modules.plugins.gitsigns")
 require("modules.plugins.conform")
 require("modules.plugins.colorizer")
 require("modules.plugins.spectre")
+require("modules.plugins.fidget")
 require("modules.plugins.flash")
 require("modules.plugins.ibl")
 require("modules.plugins.mini")
@@ -20,6 +21,3 @@ require("todo-comments").setup({})
 require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
-
--- use notify for notifications
-vim.notify = require("notify")
