@@ -1,48 +1,83 @@
-vim.opt.title = true
-
-vim.opt.nu = true
+-- enable line numbers
+vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- no need as its shown in the status line
+vim.opt.showmode = false
+
+-- share clipboard with system
+vim.opt.clipboard = "unnamedplus"
+
+-- enable breakindent
+vim.opt.breakindent = true
+
+-- keep undo history
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+
+-- set tab to be spaces of 4 characters
 vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 
-vim.opt.smarttab = true
+-- smarter tab behaviour
 vim.opt.expandtab = true
+vim.opt.smarttab = true
 
+-- auto indent to same level as previous line
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
-vim.opt.backspace = { "start", "eol", "indent" }
+-- case-insensitive searching UNLESS \C or capital in search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-
--- keep undo history
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-vim.opt.updatetime = 50
-
-vim.opt.scrolloff = 8
+-- keep signcolumn on by default
 vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
 
+-- decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- configure how window splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitkeep = "cursor"
+
+-- sets how the editor will display certain whitespace characters
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- preview substitutions live
+vim.opt.inccommand = "split"
+
+-- show which line your cursor is on
+vim.opt.cursorline = true
+
+-- minimal number of screen lines to keep above and below the cursor
+vim.opt.scrolloff = 10
+
+-- spellchecking
 vim.opt.spell = true
 vim.opt.spelllang = "en"
 vim.opt.spelloptions = "camel"
 
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.splitkeep = "cursor"
+-- disable line wrapping
+vim.opt.wrap = false
 
--- share with system
-vim.opt.clipboard = "unnamedplus"
+-- when finding files search down into subfolders
+vim.opt.path:append({ "**" })
+
+-- cmd line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = "list:longest"
+
+-- backup file during edit, delete after
+vim.opt.backup = false
+vim.opt.writebackup = true
+
+-- auto load files when changed outside of editor
+vim.opt.autoread = true
 
 -- color scheme
 require("catppuccin").setup({
@@ -55,5 +90,4 @@ require("catppuccin").setup({
 		notify = true,
 	},
 })
-
 vim.cmd("colorscheme catppuccin")
