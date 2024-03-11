@@ -76,21 +76,12 @@ vim.opt.wildmode = "list:longest"
 vim.opt.backup = false
 vim.opt.writebackup = true
 
--- auto load files when changed outside of editor
-vim.opt.autoread = true
-
--- color scheme
-require("catppuccin").setup({
-	flavour = "mocha",
-	transparent_background = true,
-	styles = {
-		conditionals = {},
-	},
-	integrations = {
-		notify = true,
-	},
+-- set diagnostic styling
+vim.diagnostic.config({
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
 })
-vim.cmd("colorscheme catppuccin")
 
 -- disable some builtin plugins
 vim.g.loaded_gzip = 0
@@ -98,5 +89,3 @@ vim.g.loaded_tar = 0
 vim.g.loaded_tarPlugin = 0
 vim.g.loaded_zipPlugin = 0
 vim.g.loaded_2html_plugin = 0
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1

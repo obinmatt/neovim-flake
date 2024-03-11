@@ -1,18 +1,24 @@
 local telescope = require("telescope")
+local builtin = require("telescope.builtin")
+local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
-		path_display = { "truncate" },
+		winblend = 0,
 		mappings = {
 			n = {
-				["dd"] = "delete_buffer",
 				["q"] = "close",
 			},
 		},
 	},
 	pickers = {
 		buffers = {
-			initial_mode = "normal",
+			sort_lastused = true,
+			mappings = {
+				["n"] = {
+					["dd"] = actions.delete_buffer + actions.move_to_top,
+				},
+			},
 		},
 		diagnostics = {
 			theme = "ivy",
@@ -26,13 +32,20 @@ telescope.setup({
 		".git/",
 		"node_modules/",
 	},
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown(),
+		},
+	},
 })
 
-telescope.load_extension("fzf")
+-- enable telescope extensions, if they are installed
+pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "ui-select")
 
+-- set telescope keymaps
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
-local builtin = require("telescope.builtin")
 
 opts.desc = "Telescope find files"
 keymap.set("n", "<leader>ff", builtin.find_files, opts)
@@ -41,7 +54,11 @@ opts.desc = "Telescope live grep"
 keymap.set("n", "<leader>fg", builtin.live_grep, opts)
 
 opts.desc = "Telescope search current buffer"
-keymap.set("n", "<leader>fs", builtin.current_buffer_fuzzy_find, opts)
+keymap.set("n", "<leader>fs", function()
+	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		previewer = false,
+	}))
+end, opts)
 
 opts.desc = "Telescope buffers"
 keymap.set("n", "<leader>fb", builtin.buffers, opts)

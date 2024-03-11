@@ -9,11 +9,11 @@ require("nvim-treesitter.configs").setup({
 	indent = {
 		enable = true,
 	},
-	-- enable autotagging (nvim-ts-autotag plugin)
-	autotag = {
-		enable = true,
-	},
 })
 
--- nvim-ts-context-commentstring plugin for commenting tsx and jsx
-require("ts_context_commentstring").setup({})
+require("treesitter-context").setup({
+	max_lines = 3,
+})
+
+-- skip backwards compatibility routines and speed up loading
+vim.g.skip_ts_context_commentstring_module = true

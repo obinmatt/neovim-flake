@@ -30,16 +30,17 @@
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim
+          telescope-ui-select-nvim
           nvim-treesitter.withAllGrammars
+          nvim-treesitter-context
           nvim-ts-context-commentstring
-          nvim-ts-autotag
           nvim-lspconfig
           lspkind-nvim
           luasnip
           friendly-snippets
           nvim-cmp
-          cmp_luasnip
           cmp-nvim-lsp
+          cmp_luasnip
           cmp-buffer
           cmp-path
           nvim-lint
@@ -47,8 +48,8 @@
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
-          inc-rename-nvim
           dressing-nvim
+          inc-rename-nvim
           indent-blankline-nvim
           todo-comments-nvim
           flash-nvim
@@ -68,6 +69,7 @@
           ripgrep
           nodePackages.typescript-language-server
           nodePackages.prettier
+          biome
           eslint_d
           lua-language-server
           stylua

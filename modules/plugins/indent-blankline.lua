@@ -7,7 +7,6 @@ require("ibl").setup({
 	exclude = {
 		filetypes = {
 			"help",
-			"notify",
 			"undotree",
 			"toggleterm",
 			"oil_preview",

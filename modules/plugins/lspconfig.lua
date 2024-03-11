@@ -1,115 +1,75 @@
 local lspconfig = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-vim.diagnostic.config({
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+	callback = function(event)
+		local map = function(keys, func, desc)
+			vim.keymap.set("n", keys, func, { buffer = event.buf, noremap = true, silent = true, desc = desc })
+		end
+
+		map("K", vim.lsp.buf.hover, "Hover Documentation")
+		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [a]ction")
+		map("<leader>li", require("telescope.builtin").lsp_implementations, "[L]SP [i]mplementations")
+		map("<leader>lt", require("telescope.builtin").lsp_type_definitions, "[L]SP [t]ype definitions")
+		map("<leader>ld", require("telescope.builtin").lsp_definitions, "[L]SP [d]efinitions")
+		map("<leader>lD", require("telescope.builtin").diagnostics, "[L]SP [D]iagnostics")
+		map("<leader>lr", require("telescope.builtin").lsp_references, "[L]SP [r]eferences")
+		map("<leader>lR", vim.lsp.buf.rename, "[L]SP [R]ename")
+
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client and client.server_capabilities.documentHighlightProvider then
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				buffer = event.buf,
+				callback = vim.lsp.buf.document_highlight,
+			})
+
+			vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+				buffer = event.buf,
+				callback = vim.lsp.buf.clear_references,
+			})
+		end
+	end,
 })
 
--- this function will run when an LSP connects to a buffer
-local on_attach = function(_, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-	buf_set_option("formatexpr", "v:lua.vim.lsp.formatexpr()")
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-	buf_set_option("tagfunc", "v:lua.vim.lsp.tagfunc")
-
-	local opts = { noremap = true, silent = true }
-
-	opts.desc = "Show documentation for what is under cursor"
-	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-
-	opts.desc = "Show available code actions"
-	buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-
-	opts.desc = "Show LSP implementations"
-	buf_set_keymap("n", "<space>li", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", opts)
-
-	opts.desc = "Show LSP type definitions"
-	buf_set_keymap("n", "<space>lt", "<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>", opts)
-
-	opts.desc = "Show LSP definitions"
-	buf_set_keymap("n", "<space>ld", "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
-
-	opts.desc = "Show LSP diagnostics"
-	buf_set_keymap("n", "<space>lD", "<cmd>lua require('trouble').toggle()<cr>", opts)
-
-	opts.desc = "Show LSP references"
-	buf_set_keymap("n", "<space>lr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
-
-	opts.desc = "Toggle LSP rename"
-	buf_set_keymap("n", "<space>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-
-	opts.desc = "Go to previous diagnostic"
-	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
-
-	opts.desc = "Go to next diagnostic"
-	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
-end
-
--- broadcast that neovim supports additional completion capabilities with nvim-cmp
-local capabilities =
-	vim.tbl_extend("force", vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
-
--- configure lua server
 lspconfig.lua_ls.setup({
-	on_attach = on_attach,
 	capabilities = capabilities,
-	single_file_support = true,
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },
 			workspace = {
 				checkThirdParty = false,
-				-- tells lua_ls where to find all the lua files in your config
 				library = {
 					"${3rd}/luv/library",
 					unpack(vim.api.nvim_get_runtime_file("", true)),
 				},
 			},
 			telemetry = { enable = false },
-			completion = { enable = true, callSnippet = "Replace" },
+			completion = { callSnippet = "Replace" },
 		},
 	},
 })
 
--- configure nix server
-lspconfig.nil_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+lspconfig.nil_ls.setup({ capabilities = capabilities })
 
--- function to organize imports using tsserver
-local function organizeImports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	}
-	vim.lsp.buf.execute_command(params)
-end
-
--- configure typescript server
 lspconfig.tsserver.setup({
-	on_attach = on_attach,
 	capabilities = capabilities,
 	single_file_support = false,
-	settings = {
-		typescript = {
-			completions = {
-				completeFunctionCalls = true,
-			},
-		},
-	},
-	commands = {
-		OrganizeImports = {
-			organizeImports,
-			description = "Organize Imports",
+	keys = {
+		{
+			"<leader>co",
+			function()
+				vim.lsp.buf.code_action({
+					apply = true,
+					context = {
+						only = { "source.organizeImports.ts" },
+						diagnostics = {},
+					},
+				})
+			end,
+			desc = "Organize Imports",
 		},
 	},
 })
