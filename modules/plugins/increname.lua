@@ -1,5 +1,5 @@
 require("inc_rename").setup({
-	input_buffer_type = "dressing",
+	preview_empty_name = true,
 })
 
 vim.keymap.set("n", "<leader>rn", function()

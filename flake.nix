@@ -53,7 +53,6 @@
           indent-blankline-nvim
           todo-comments-nvim
           flash-nvim
-          nvim-spectre
           nvim-colorizer-lua
           nvim-web-devicons
           vim-illuminate

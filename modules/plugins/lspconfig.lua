@@ -54,22 +54,21 @@ lspconfig.lua_ls.setup({
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
 
+local function organizeImports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+	}
+	vim.lsp.buf.execute_command(params)
+end
+
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
 	single_file_support = false,
-	keys = {
-		{
-			"<leader>co",
-			function()
-				vim.lsp.buf.code_action({
-					apply = true,
-					context = {
-						only = { "source.organizeImports.ts" },
-						diagnostics = {},
-					},
-				})
-			end,
-			desc = "Organize Imports",
+	commands = {
+		OrganizeImports = {
+			organizeImports,
+			description = "Organize Imports",
 		},
 	},
 })
