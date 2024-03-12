@@ -34,6 +34,7 @@
           nvim-treesitter.withAllGrammars
           nvim-treesitter-context
           nvim-ts-context-commentstring
+          typescript-tools-nvim
           nvim-lspconfig
           lspkind-nvim
           luasnip
