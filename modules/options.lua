@@ -72,10 +72,6 @@ vim.opt.path:append({ "**" })
 vim.opt.wildmenu = true
 vim.opt.wildmode = "list:longest"
 
--- backup file during edit, delete after
-vim.opt.backup = false
-vim.opt.writebackup = true
-
 -- set diagnostic styling
 vim.diagnostic.config({
 	underline = true,
