@@ -18,7 +18,6 @@ cmp.setup({
 	end,
 	completion = {
 		completeopt = "menu,menuone,noselect",
-		keyword_length = 2,
 	},
 	snippet = {
 		expand = function(args)
@@ -50,8 +49,6 @@ cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({
 			mode = "symbol_text",
-			maxwidth = 50,
-			ellipsis_char = "...",
 		}),
 	},
 })

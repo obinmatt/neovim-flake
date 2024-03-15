@@ -23,7 +23,6 @@
         plugins = with pkgs.vimPlugins; [
           catppuccin-nvim
           undotree
-          oil-nvim
           mini-nvim
           fidget-nvim
           trouble-nvim
@@ -34,7 +33,6 @@
           nvim-treesitter.withAllGrammars
           nvim-treesitter-context
           nvim-ts-context-commentstring
-          typescript-tools-nvim
           nvim-lspconfig
           lspkind-nvim
           luasnip
@@ -49,11 +47,9 @@
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
-          dressing-nvim
-          inc-rename-nvim
+          toggleterm-nvim
           indent-blankline-nvim
           todo-comments-nvim
-          flash-nvim
           nvim-colorizer-lua
           nvim-web-devicons
           vim-illuminate
@@ -68,8 +64,7 @@
           lazygit
           ripgrep
           nodePackages.typescript-language-server
-          nodePackages.prettier
-          biome
+          prettierd
           eslint_d
           lua-language-server
           stylua

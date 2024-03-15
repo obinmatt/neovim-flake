@@ -4,9 +4,6 @@ require("catppuccin").setup({
 	styles = {
 		conditionals = {},
 	},
-	integrations = {
-		notify = true,
-	},
 })
 
 vim.cmd("colorscheme catppuccin")

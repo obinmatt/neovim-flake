@@ -9,8 +9,6 @@ require("ibl").setup({
 			"help",
 			"undotree",
 			"toggleterm",
-			"oil_preview",
-			"oil",
 		},
 	},
 })

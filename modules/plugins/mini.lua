@@ -2,6 +2,15 @@ require("mini.pairs").setup({})
 require("mini.surround").setup({})
 require("mini.statusline").setup({})
 
+require("mini.files").setup({
+	mappings = {
+		go_in = "",
+		go_in_plus = "<cr>",
+		go_out = "",
+		go_out_plus = "-",
+	},
+})
+
 require("mini.comment").setup({
 	options = {
 		custom_commentstring = function()
@@ -16,12 +25,11 @@ require("mini.indentscope").setup({
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("mini-indentscope", {}),
 	pattern = {
 		"help",
 		"undotree",
 		"toggleterm",
-		"oil_preview",
-		"oil",
 	},
 	callback = function()
 		vim.b.miniindentscope_disable = true

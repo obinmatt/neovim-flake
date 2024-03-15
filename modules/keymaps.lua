@@ -2,63 +2,33 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local mapn = function(keys, func, desc)
+	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
+end
 
-opts.desc = "Move highlighted line down"
-keymap.set("v", "J", ":m '>+1<cr>gv=gv", opts)
+local mapv = function(keys, func, desc)
+	vim.keymap.set("v", keys, func, { noremap = true, silent = true, desc = desc })
+end
 
-opts.desc = "Move highlighted line up"
-keymap.set("v", "K", ":m '<-2<cr>gv=gv", opts)
+mapn("<leader>o", "<cmd>lua MiniFiles.open()<cr>", "Toggle mini files")
+mapn("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename word under cursor")
+mapn("<leader>ss", "<cmd>split<cr>", "Split window horizontally")
+mapn("<leader>sv", "<cmd>vsplit<cr>", "Split window vertically")
+mapn("<leader>sk", "<cmd>%!jq --sort-keys --indent 4<cr>", "Sort JSON jeys using jq")
+mapn("<leader>gg", "<cmd>LazyGit<cr>", "Toggle lazygit")
+mapn("<leader>tt", "<cmd>ToggleTerm size=40 dir=~/Desktop direction=horizontal name=desktop<cr>", "Toggle term")
+mapn("<leader>u", vim.cmd.UndotreeToggle, "Toggle undotree")
+mapn("<leader>e", vim.diagnostic.open_float, "Show diagnostic error messages")
+mapn("<leader>q", vim.diagnostic.setloclist, "Open diagnostic quickfix list")
+mapn("<C-a>", "gg<S-v>G", "Select all in current buffer")
+mapn("<C-h>", "<C-w><C-h>", "Move focus to the left window")
+mapn("<C-l>", "<C-w><C-l>", "Move focus to the right window")
+mapn("<C-j>", "<C-w><C-j>", "Move focus to the lower window")
+mapn("<C-k>", "<C-w><C-k>", "Move focus to the upper window")
+mapn("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic message")
+mapn("]d", vim.diagnostic.goto_next, "Go to next diagnostic message")
+mapn("n", "nzzzv", "Keep search word centered")
+mapn("N", "Nzzzv", "Keep search word centered")
 
-opts.desc = "Keep search word centered"
-keymap.set("n", "n", "nzzzv", opts)
-keymap.set("n", "N", "Nzzzv", opts)
-
-opts.desc = "Split window horizontally"
-keymap.set("n", "<leader>ss", ":split<cr>", opts)
-
-opts.desc = "Split window vertically"
-keymap.set("n", "<leader>sv", ":vsplit<cr>", opts)
-
-opts.desc = "Rename word under cursor"
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
-
-opts.desc = "Sort JSON jeys using jq"
-keymap.set("n", "<leader>sk", "<cmd>%!jq --sort-keys --indent 4<cr>", opts)
-
-opts.desc = "Toggle lazygit"
-keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", opts)
-
-opts.desc = "Toggle undotree"
-keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, opts)
-
-opts.desc = "Toggle oil"
-keymap.set("n", "<leader>o", "<cmd>Oil<cr>", opts)
-
-opts.desc = "Show diagnostic error messages"
-keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
-
-opts.desc = "Open diagnostic quickfix list"
-keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
-
-opts.desc = "Go to previous diagnostic message"
-keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-opts.desc = "Go to next diagnostic message"
-keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-opts.desc = "Select all in current buffer"
-keymap.set("n", "<C-a>", "gg<S-v>G", opts)
-
-opts.desc = "Move focus to the left window"
-keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
-
-opts.desc = "Move focus to the right window"
-keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
-
-opts.desc = "Move focus to the lower window"
-keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
-
-opts.desc = "Move focus to the upper window"
-keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
+mapv("J", ":m '>+1<cr>gv=gv", "Move highlighted line down")
+mapv("K", ":m '<-2<cr>gv=gv", "Move highlighted line up")

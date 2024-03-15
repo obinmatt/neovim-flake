@@ -1,20 +1,11 @@
 require("todo-comments").setup({})
 
-local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local map = function(keys, func, desc)
+	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
+end
 
-opts.desc = "Next todo comment"
-keymap.set("n", "]t", function()
-	require("todo-comments").jump_next()
-end, opts)
-
-opts.desc = "Previous todo comment"
-keymap.set("n", "[t", function()
-	require("todo-comments").jump_prev()
-end, opts)
-
-opts.desc = "Telescope todo"
-keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", opts)
-
-opts.desc = "Telescope todo/fix/fixme"
-keymap.set("n", "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", opts)
+-- stylua: ignore start
+map("]t", function() require("todo-comments").jump_next() end, "Next todo comment")
+map("[t", function() require("todo-comments").jump_prev() end, "Previous todo comment")
+map("<leader>ft", "<cmd>TodoTelescope<cr>", "Telescope todo")
+map("<leader>fT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Telescope todo/fix/fixme")
