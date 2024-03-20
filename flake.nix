@@ -31,7 +31,6 @@
           telescope-fzf-native-nvim
           telescope-ui-select-nvim
           nvim-treesitter.withAllGrammars
-          nvim-treesitter-context
           nvim-ts-context-commentstring
           nvim-lspconfig
           lspkind-nvim
@@ -47,7 +46,6 @@
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
-          toggleterm-nvim
           indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua

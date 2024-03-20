@@ -11,12 +11,11 @@ local mapv = function(keys, func, desc)
 end
 
 mapn("<leader>o", "<cmd>lua MiniFiles.open()<cr>", "Toggle mini files")
-mapn("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename word under cursor")
+mapn("<leader>a", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename word under cursor")
 mapn("<leader>ss", "<cmd>split<cr>", "Split window horizontally")
 mapn("<leader>sv", "<cmd>vsplit<cr>", "Split window vertically")
 mapn("<leader>sk", "<cmd>%!jq --sort-keys --indent 4<cr>", "Sort JSON jeys using jq")
 mapn("<leader>gg", "<cmd>LazyGit<cr>", "Toggle lazygit")
-mapn("<leader>tt", "<cmd>ToggleTerm size=40 dir=~/Desktop direction=horizontal name=desktop<cr>", "Toggle term")
 mapn("<leader>u", vim.cmd.UndotreeToggle, "Toggle undotree")
 mapn("<leader>e", vim.diagnostic.open_float, "Show diagnostic error messages")
 mapn("<leader>q", vim.diagnostic.setloclist, "Open diagnostic quickfix list")
