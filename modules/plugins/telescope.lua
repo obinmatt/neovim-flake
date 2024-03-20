@@ -4,6 +4,7 @@ local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
+		path_display = { "truncate" },
 		mappings = {
 			n = {
 				["q"] = "close",

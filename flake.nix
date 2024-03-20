@@ -32,6 +32,7 @@
           telescope-ui-select-nvim
           nvim-treesitter.withAllGrammars
           nvim-ts-context-commentstring
+          nvim-ts-autotag
           nvim-lspconfig
           lspkind-nvim
           luasnip

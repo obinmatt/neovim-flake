@@ -14,3 +14,5 @@ require("nvim-treesitter.configs").setup({
 require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
+
+require("nvim-ts-autotag").setup()
