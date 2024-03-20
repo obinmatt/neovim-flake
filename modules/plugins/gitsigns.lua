@@ -17,7 +17,8 @@ require("gitsigns").setup({
         -- stylua: ignore start
         map("]h", gs.next_hunk, "Next Hunk")
         map("[h", gs.prev_hunk, "Prev Hunk")
-        map("<leader>ghr", gs.reset_buffer, "Reset Buffer")
+        map("<leader>ghr", gs.reset_hunk, "Reset Hunk")
+        map("<leader>ghR", gs.reset_buffer, "Reset Buffer")
         map("<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
         map("<leader>ghd", gs.diffthis, "Diff This")
         map("<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")

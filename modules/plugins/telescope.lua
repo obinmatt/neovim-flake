@@ -13,6 +13,7 @@ telescope.setup({
 	pickers = {
 		buffers = {
 			sort_lastused = true,
+			initial_mode = "normal",
 			mappings = {
 				["n"] = {
 					["dd"] = actions.delete_buffer + actions.move_to_top,
@@ -46,7 +47,7 @@ map("<leader>fb", builtin.buffers, "Telescope buffers")
 map("<leader>fd", builtin.lsp_document_symbols, "Telescope document symbols")
 map("<leader>ff", builtin.find_files, "Telescope find files")
 map("<leader>fg", builtin.live_grep, "Telescope live grep")
-map("<leader>sk", builtin.keymaps, "Telescope keymaps")
+map("<leader>fk", builtin.keymaps, "Telescope keymaps")
 map("<leader>/", function()
 	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 		previewer = false,
