@@ -44,7 +44,7 @@ local map = function(keys, func, desc)
 	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
 end
 
-map("<leader>fb", builtin.buffers, "Telescope buffers")
+map("<leader><leader>", builtin.buffers, "Telescope buffers")
 map("<leader>fd", builtin.lsp_document_symbols, "Telescope document symbols")
 map("<leader>ff", builtin.find_files, "Telescope find files")
 map("<leader>fg", builtin.live_grep, "Telescope live grep")
