@@ -23,6 +23,7 @@
         plugins = with pkgs.vimPlugins; [
           catppuccin-nvim
           undotree
+          oil-nvim
           mini-nvim
           fidget-nvim
           trouble-nvim

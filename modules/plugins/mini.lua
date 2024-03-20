@@ -7,15 +7,6 @@ statusline.section_location = function()
 	return "%2l:%-2v"
 end
 
-require("mini.files").setup({
-	mappings = {
-		go_in = "",
-		go_in_plus = "<cr>",
-		go_out = "",
-		go_out_plus = "-",
-	},
-})
-
 require("mini.comment").setup({
 	options = {
 		custom_commentstring = function()

@@ -13,4 +13,5 @@ require("modules.plugins.todo-comments")
 require("modules.plugins.treesitter")
 
 -- plugins without extensive config
+require("oil").setup({})
 require("which-key").register({})
