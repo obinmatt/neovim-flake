@@ -1,6 +1,11 @@
 require("mini.pairs").setup({})
 require("mini.surround").setup({})
-require("mini.statusline").setup({})
+
+local statusline = require("mini.statusline")
+statusline.setup({})
+statusline.section_location = function()
+	return "%2l:%-2v"
+end
 
 require("mini.files").setup({
 	mappings = {
