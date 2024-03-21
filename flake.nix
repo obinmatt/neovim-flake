@@ -35,6 +35,7 @@
           nvim-ts-context-commentstring
           nvim-ts-autotag
           nvim-lspconfig
+          typescript-tools-nvim
           lspkind-nvim
           luasnip
           friendly-snippets
@@ -63,7 +64,6 @@
           git
           lazygit
           ripgrep
-          nodePackages.typescript-language-server
           prettierd
           eslint_d
           lua-language-server
