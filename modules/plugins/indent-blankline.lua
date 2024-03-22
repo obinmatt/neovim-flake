@@ -8,7 +8,8 @@ require("ibl").setup({
 		filetypes = {
 			"help",
 			"undotree",
-			"toggleterm",
+			"oil_preview",
+			"oil",
 		},
 	},
 })
