@@ -54,6 +54,7 @@
           nvim-web-devicons
           vim-illuminate
           vim-be-good
+          neogen
         ];
 
         dependencies = with pkgs; [

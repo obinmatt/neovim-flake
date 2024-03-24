@@ -14,4 +14,5 @@ require("modules.plugins.treesitter")
 
 -- plugins without extensive config
 require("oil").setup({})
+require("neogen").setup({})
 require("which-key").register({})
