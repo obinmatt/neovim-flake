@@ -64,7 +64,7 @@
           lazygit
           ripgrep
           nodePackages.typescript-language-server
-          prettierd
+          nodePackages.prettier
           eslint_d
           lua-language-server
           stylua
