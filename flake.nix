@@ -4,9 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    moonfly.url = "github:bluz71/vim-moonfly-colors";
+    moonfly.flake = false;
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
@@ -17,16 +19,27 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {};
-          overlays = [];
+          overlays = [
+            (self: super: {
+              vimPlugins =
+                super.vimPlugins
+                // {
+                  moonfly = super.vimUtils.buildVimPlugin {
+                    name = "moonfly";
+                    pname = "moonfly";
+                    src = inputs.moonfly;
+                  };
+                };
+            })
+          ];
         };
 
         plugins = with pkgs.vimPlugins; [
-          catppuccin-nvim
+          moonfly
           undotree
           oil-nvim
           mini-nvim
           fidget-nvim
-          trouble-nvim
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim
@@ -53,7 +66,6 @@
           nvim-colorizer-lua
           nvim-web-devicons
           vim-illuminate
-          vim-be-good
           neogen
         ];
 

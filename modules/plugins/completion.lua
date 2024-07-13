@@ -2,6 +2,10 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
+local winhighlight = {
+	winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
+}
+
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
 
@@ -18,6 +22,10 @@ cmp.setup({
 	end,
 	completion = {
 		completeopt = "menu,menuone,noselect",
+	},
+	window = {
+		completion = cmp.config.window.bordered(winhighlight),
+		documentation = cmp.config.window.bordered(winhighlight),
 	},
 	snippet = {
 		expand = function(args)
