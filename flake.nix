@@ -4,8 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    moonfly.url = "github:bluz71/vim-moonfly-colors";
-    moonfly.flake = false;
+    solarized-osaka.url = "github:craftzdog/solarized-osaka.nvim";
+    solarized-osaka.flake = false;
   };
 
   outputs = inputs @ {
@@ -24,10 +24,10 @@
               vimPlugins =
                 super.vimPlugins
                 // {
-                  moonfly = super.vimUtils.buildVimPlugin {
-                    name = "moonfly";
-                    pname = "moonfly";
-                    src = inputs.moonfly;
+                  solarized-osaka = super.vimUtils.buildVimPlugin {
+                    name = "solarized-osaka";
+                    pname = "solarized-osaka";
+                    src = inputs.solarized-osaka;
                   };
                 };
             })
@@ -35,7 +35,7 @@
         };
 
         plugins = with pkgs.vimPlugins; [
-          moonfly
+          solarized-osaka
           undotree
           oil-nvim
           mini-nvim

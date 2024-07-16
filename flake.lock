@@ -18,22 +18,6 @@
         "type": "github"
       }
     },
-    "moonfly": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720425891,
-        "narHash": "sha256-x7Vqfcnf01PMxHG566RfvQ8Q8CekT0bnPpVUh9ndd5Y=",
-        "owner": "bluz71",
-        "repo": "vim-moonfly-colors",
-        "rev": "31f65a1bbddd7de9a639d8d0e32b8066c0de1da1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bluz71",
-        "repo": "vim-moonfly-colors",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1720781449,
@@ -53,8 +37,24 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "moonfly": "moonfly",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "solarized-osaka": "solarized-osaka"
+      }
+    },
+    "solarized-osaka": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720058557,
+        "narHash": "sha256-uDSfLbXqKRSE2dLNVB1uQ5Grv4tPSzppQiR1t01UI+o=",
+        "owner": "craftzdog",
+        "repo": "solarized-osaka.nvim",
+        "rev": "126d394c0c979a99206214a2b6b8c86e456c9c0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "craftzdog",
+        "repo": "solarized-osaka.nvim",
+        "type": "github"
       }
     },
     "systems": {
