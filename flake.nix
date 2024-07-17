@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    solarized-osaka.url = "github:craftzdog/solarized-osaka.nvim";
-    solarized-osaka.flake = false;
   };
 
   outputs = inputs @ {
@@ -19,23 +17,11 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {};
-          overlays = [
-            (self: super: {
-              vimPlugins =
-                super.vimPlugins
-                // {
-                  solarized-osaka = super.vimUtils.buildVimPlugin {
-                    name = "solarized-osaka";
-                    pname = "solarized-osaka";
-                    src = inputs.solarized-osaka;
-                  };
-                };
-            })
-          ];
+          overlays = [];
         };
 
         plugins = with pkgs.vimPlugins; [
-          solarized-osaka
+          kanagawa-nvim
           undotree
           oil-nvim
           mini-nvim
