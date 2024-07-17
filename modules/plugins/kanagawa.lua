@@ -9,12 +9,10 @@ require("kanagawa").setup({
 			NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 			FloatBorder = { bg = "none" },
 			FloatTitle = { bg = "none" },
-			-- telescope
-			TelescopePromptBorder = { bg = theme.ui.bg_dim },
-			TelescopeResultsBorder = { bg = theme.ui.bg_dim },
-			TelescopePreviewBorder = { bg = theme.ui.bg_dim },
 		}
 	end,
 })
 
 vim.cmd("colorscheme kanagawa")
+vim.cmd("highlight TelescopeBorder guibg=none")
+vim.cmd("highlight TelescopeTitle guibg=none")
