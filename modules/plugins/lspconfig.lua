@@ -53,6 +53,7 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
+lspconfig.gleam.setup({ capabilities = capabilities })
 
 local function organizeImports()
 	local params = {
