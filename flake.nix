@@ -6,7 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     flake-utils,
@@ -42,7 +42,6 @@
           cmp_luasnip
           cmp-buffer
           cmp-path
-          nvim-lint
           conform-nvim
           lazygit-nvim
           gitsigns-nvim
@@ -64,7 +63,7 @@
           ripgrep
           nodePackages.typescript-language-server
           nodePackages.prettier
-          eslint_d
+          vscode-langservers-extracted
           lua-language-server
           stylua
           nil

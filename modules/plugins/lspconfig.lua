@@ -73,3 +73,5 @@ lspconfig.tsserver.setup({
 		},
 	},
 })
+
+lspconfig.eslint.setup({ capabilities = capabilities })
