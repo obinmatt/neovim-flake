@@ -75,3 +75,4 @@ lspconfig.tsserver.setup({
 })
 
 lspconfig.eslint.setup({ capabilities = capabilities })
+lspconfig.jsonls.setup({ capabilities = capabilities })
