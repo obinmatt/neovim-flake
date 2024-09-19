@@ -21,7 +21,8 @@
         };
 
         plugins = with pkgs.vimPlugins; [
-          kanagawa-nvim
+          zenbones-nvim
+          lush-nvim
           undotree
           oil-nvim
           mini-nvim
