@@ -1,3 +1,4 @@
+require("modules.plugins.catppuccin")
 require("modules.plugins.colorizer")
 require("modules.plugins.completion")
 require("modules.plugins.conform")
@@ -9,7 +10,6 @@ require("modules.plugins.mini")
 require("modules.plugins.telescope")
 require("modules.plugins.todo-comments")
 require("modules.plugins.treesitter")
-require("modules.plugins.zenbones")
 
 -- plugins without extensive config
 require("oil").setup({})

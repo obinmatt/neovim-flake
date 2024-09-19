@@ -21,8 +21,7 @@
         };
 
         plugins = with pkgs.vimPlugins; [
-          zenbones-nvim
-          lush-nvim
+          catppuccin-nvim
           undotree
           oil-nvim
           mini-nvim
