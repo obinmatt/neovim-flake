@@ -1,7 +1,7 @@
-require("modules.plugins.catppuccin")
 require("modules.plugins.colorizer")
 require("modules.plugins.completion")
 require("modules.plugins.conform")
+require("modules.plugins.cyberdream")
 require("modules.plugins.fidget")
 require("modules.plugins.gitsigns")
 require("modules.plugins.indent-blankline")

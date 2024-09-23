@@ -21,7 +21,7 @@
         };
 
         plugins = with pkgs.vimPlugins; [
-          catppuccin-nvim
+          cyberdream-nvim
           undotree
           oil-nvim
           mini-nvim
