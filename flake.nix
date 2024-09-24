@@ -22,6 +22,7 @@
 
         plugins = with pkgs.vimPlugins; [
           cyberdream-nvim
+          lualine-nvim
           undotree
           oil-nvim
           mini-nvim
