@@ -1,15 +1,21 @@
 require("lualine").setup({
 	options = {
-		icons_enabled = true,
 		theme = "auto",
-		component_separators = { left = " ", right = " " },
-		section_separators = { left = " ", right = " " },
+		icons_enabled = true,
+		component_separators = "",
+		section_separators = "",
 		globalstatus = true,
 	},
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
+		lualine_c = {
+			{
+				"filename",
+				shorting_target = 0,
+				path = 1,
+			},
+		},
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },

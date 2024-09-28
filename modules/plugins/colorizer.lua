@@ -6,6 +6,7 @@ require("colorizer").setup({
 		"typescriptreact",
 		"html",
 		"css",
+		"lua",
 		"nix",
 	},
 })

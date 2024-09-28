@@ -4,9 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    incline-nvim.url = "github:b0o/incline.nvim";
+    incline-nvim.flake = false;
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
@@ -17,7 +19,19 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {};
-          overlays = [];
+          overlays = [
+            (self: super: {
+              vimPlugins =
+                super.vimPlugins
+                // {
+                  incline-nvim = super.vimUtils.buildVimPlugin {
+                    name = "incline-nvim";
+                    pname = "incline-nvim";
+                    src = inputs.incline-nvim;
+                  };
+                };
+            })
+          ];
         };
 
         plugins = with pkgs.vimPlugins; [
@@ -27,6 +41,7 @@
           oil-nvim
           mini-nvim
           fidget-nvim
+          incline-nvim
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim
