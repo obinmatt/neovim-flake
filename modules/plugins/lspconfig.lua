@@ -53,7 +53,17 @@ lspconfig.lua_ls.setup({
 })
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
-lspconfig.gleam.setup({ capabilities = capabilities })
+
+local inlayHintsSettings = {
+	includeInlayEnumMemberValueHints = true,
+	includeInlayFunctionLikeReturnTypeHints = true,
+	includeInlayFunctionParameterTypeHints = true,
+	includeInlayParameterNameHints = "literals",
+	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	includeInlayPropertyDeclarationTypeHints = true,
+	includeInlayVariableTypeHints = false,
+	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+}
 
 local function organizeImports()
 	local params = {
@@ -63,9 +73,14 @@ local function organizeImports()
 	vim.lsp.buf.execute_command(params)
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	single_file_support = false,
+	settings = {
+		typescript = { inlayHints = inlayHintsSettings },
+		javascript = { inlayHints = inlayHintsSettings },
+		completions = { completeFunctionCalls = true },
+	},
 	commands = {
 		OrganizeImports = {
 			organizeImports,
