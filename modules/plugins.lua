@@ -18,3 +18,4 @@ require("modules.plugins.treesitter")
 -- plugins without extensive config
 require("neogen").setup({})
 require("which-key").register({})
+require("yazi").setup({})

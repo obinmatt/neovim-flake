@@ -11,6 +11,7 @@ local mapv = function(keys, func, desc)
 end
 
 mapn("<leader>o", "<cmd>Oil<cr>", "Toggle oil")
+mapn("<leader>y", "<cmd>Yazi<cr>", "Toggle yazi")
 mapn("<leader>a", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename word under cursor")
 mapn("<leader>ss", "<cmd>split<cr>", "Split window horizontally")
 mapn("<leader>sv", "<cmd>vsplit<cr>", "Split window vertically")

@@ -6,6 +6,8 @@
     flake-utils.url = "github:numtide/flake-utils";
     incline-nvim.url = "github:b0o/incline.nvim";
     incline-nvim.flake = false;
+    yazi-nvim.url = "github:mikavilpas/yazi.nvim";
+    yazi-nvim.flake = false;
   };
 
   outputs = inputs @ {
@@ -29,6 +31,11 @@
                     pname = "incline-nvim";
                     src = inputs.incline-nvim;
                   };
+                  yazi-nvim = super.vimUtils.buildVimPlugin {
+                    name = "yazi-nvim";
+                    pname = "yazi-nvim";
+                    src = inputs.yazi-nvim;
+                  };
                 };
             })
           ];
@@ -39,6 +46,7 @@
           lualine-nvim
           undotree
           oil-nvim
+          yazi-nvim
           mini-nvim
           fidget-nvim
           incline-nvim
@@ -76,6 +84,7 @@
           fd
           fzf
           git
+          yazi
           lazygit
           ripgrep
           nodePackages.typescript-language-server

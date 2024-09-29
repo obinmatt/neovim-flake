@@ -54,7 +54,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "incline-nvim": "incline-nvim",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yazi-nvim": "yazi-nvim"
       }
     },
     "systems": {
@@ -69,6 +70,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "yazi-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727031712,
+        "narHash": "sha256-0E8lv7v9N7p4NV9SaA8IYId4y1skv+zM5+IDQssclPc=",
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
+        "rev": "1f8bcc422956e347d2fe5e2f1e323d45130ae399",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
         "type": "github"
       }
     }
