@@ -45,7 +45,6 @@
           cyberdream-nvim
           lualine-nvim
           undotree
-          oil-nvim
           yazi-nvim
           mini-nvim
           fidget-nvim
