@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    incline-nvim.url = "github:b0o/incline.nvim";
-    incline-nvim.flake = false;
     yazi-nvim.url = "github:mikavilpas/yazi.nvim";
     yazi-nvim.flake = false;
   };
@@ -26,11 +24,6 @@
               vimPlugins =
                 super.vimPlugins
                 // {
-                  incline-nvim = super.vimUtils.buildVimPlugin {
-                    name = "incline-nvim";
-                    pname = "incline-nvim";
-                    src = inputs.incline-nvim;
-                  };
                   yazi-nvim = super.vimUtils.buildVimPlugin {
                     name = "yazi-nvim";
                     pname = "yazi-nvim";
@@ -48,7 +41,6 @@
           yazi-nvim
           mini-nvim
           fidget-nvim
-          incline-nvim
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim
