@@ -9,6 +9,10 @@ require("mini.comment").setup({
 	},
 })
 
+require("mini.sessions").setup({ directory = "~/.config/nvim/misc/sessions" })
+require("mini.starter").setup({})
+vim.cmd([[autocmd User MiniStarterOpened setlocal fillchars=eob:\ ]])
+
 require("mini.indentscope").setup({
 	symbol = "│",
 	options = { try_as_border = true },
