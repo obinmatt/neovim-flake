@@ -40,7 +40,9 @@
           undotree
           yazi-nvim
           mini-nvim
-          fidget-nvim
+          nui-nvim
+          nvim-notify
+          noice-nvim
           plenary-nvim
           telescope-nvim
           telescope-fzf-native-nvim

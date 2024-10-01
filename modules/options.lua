@@ -5,6 +5,9 @@ vim.opt.relativenumber = true
 -- no need as its shown in the status line
 vim.opt.showmode = false
 
+-- enable 24-bit colour
+vim.opt.termguicolors = true
+
 -- share clipboard with system
 vim.opt.clipboard = "unnamedplus"
 
