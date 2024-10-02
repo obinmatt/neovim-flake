@@ -64,6 +64,7 @@
           gitsigns-nvim
           which-key-nvim
           inc-rename-nvim
+          refactoring-nvim
           indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua
