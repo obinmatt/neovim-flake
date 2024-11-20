@@ -88,6 +88,3 @@ lspconfig.ts_ls.setup({
 		},
 	},
 })
-
-lspconfig.eslint.setup({ capabilities = capabilities })
-lspconfig.jsonls.setup({ capabilities = capabilities })

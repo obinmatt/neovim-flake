@@ -59,6 +59,7 @@
           cmp_luasnip
           cmp-buffer
           cmp-path
+          nvim-lint
           conform-nvim
           lazygit-nvim
           gitsigns-nvim
@@ -83,7 +84,7 @@
           ripgrep
           nodePackages.typescript-language-server
           nodePackages.prettier
-          vscode-langservers-extracted
+          eslint_d
           lua-language-server
           stylua
           nil
