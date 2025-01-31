@@ -4,11 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    yazi-nvim.url = "github:mikavilpas/yazi.nvim";
-    yazi-nvim.flake = false;
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     flake-utils,
@@ -19,19 +17,7 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {};
-          overlays = [
-            (self: super: {
-              vimPlugins =
-                super.vimPlugins
-                // {
-                  yazi-nvim = super.vimUtils.buildVimPlugin {
-                    name = "yazi-nvim";
-                    pname = "yazi-nvim";
-                    src = inputs.yazi-nvim;
-                  };
-                };
-            })
-          ];
+          overlays = [];
         };
 
         plugins = with pkgs.vimPlugins; [
@@ -44,9 +30,7 @@
           nvim-notify
           noice-nvim
           plenary-nvim
-          telescope-nvim
-          telescope-fzf-native-nvim
-          telescope-ui-select-nvim
+          fzf-lua
           nvim-treesitter.withAllGrammars
           nvim-ts-context-commentstring
           nvim-ts-autotag
@@ -65,7 +49,6 @@
           gitsigns-nvim
           which-key-nvim
           inc-rename-nvim
-          refactoring-nvim
           indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua
