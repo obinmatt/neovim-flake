@@ -7,4 +7,4 @@ end
 -- stylua: ignore start
 map("]t", function() require("todo-comments").jump_next() end, "Next todo comment")
 map("[t", function() require("todo-comments").jump_prev() end, "Previous todo comment")
-map("<leader>ft", "<cmd>TodoFzfLua<cr>", "Find todos")
+map("<leader>ft", function() require("snacks").picker.todo_comments() end, "Find todos")

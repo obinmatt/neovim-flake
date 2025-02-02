@@ -34,7 +34,6 @@
           nvim-ts-context-commentstring
           nvim-ts-autotag
           nvim-lspconfig
-          fzf-lua
           blink-cmp
           luasnip
           friendly-snippets

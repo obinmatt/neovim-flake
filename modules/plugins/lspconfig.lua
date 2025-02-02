@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local snacks = require("snacks")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -9,11 +10,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("K", vim.lsp.buf.hover, "Hover Documentation")
 		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [a]ction")
-		map("<leader>li", require("fzf-lua").lsp_implementations, "[L]SP [i]mplementations")
-		map("<leader>lt", require("fzf-lua").lsp_typedefs, "[L]SP [t]ype definitions")
-		map("<leader>ld", require("fzf-lua").lsp_definitions, "[L]SP [d]efinitions")
-		map("<leader>lD", require("fzf-lua").lsp_workspace_diagnostics, "[L]SP [D]iagnostics")
-		map("<leader>lr", require("fzf-lua").lsp_references, "[L]SP [r]eferences")
+		map("<leader>li", snacks.picker.lsp_implementations, "[L]SP [i]mplementations")
+		map("<leader>lt", snacks.picker.lsp_type_definitions, "[L]SP [t]ype definitions")
+		map("<leader>ld", snacks.picker.lsp_definitions, "[L]SP [d]efinitions")
+		map("<leader>lD", snacks.picker.diagnostics, "[L]SP [D]iagnostics")
+		map("<leader>lr", snacks.picker.lsp_references, "[L]SP [r]eferences")
 		map("<leader>lR", vim.lsp.buf.rename, "[L]SP [R]ename")
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)

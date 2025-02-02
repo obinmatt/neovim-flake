@@ -16,6 +16,24 @@ snacks.setup({
 			{ section = "keys", gap = 1, padding = 1 },
 		},
 	},
+	picker = {
+		enabled = true,
+		matcher = { frecency = true },
+	},
 })
 
-vim.keymap.set("n", "<leader>gg", snacks.lazygit.open, { noremap = true, silent = true, desc = "Toggle Lazygit" })
+local mapn = function(keys, func, desc)
+	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
+end
+
+mapn("<leader>gg", snacks.lazygit.open, "Toggle Lazygit")
+mapn("<leader>ff", snacks.picker.files, "Find Files")
+mapn("<leader>fg", snacks.picker.grep, "Grep")
+mapn("<leader><leader>", function()
+	snacks.picker.buffers({
+		-- start in normal mode
+		on_show = function()
+			vim.cmd.stopinsert()
+		end,
+	})
+end, "Buffers")
