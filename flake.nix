@@ -35,14 +35,9 @@
           nvim-ts-context-commentstring
           nvim-ts-autotag
           nvim-lspconfig
-          lspkind-nvim
+          blink-cmp
           luasnip
           friendly-snippets
-          nvim-cmp
-          cmp-nvim-lsp
-          cmp_luasnip
-          cmp-buffer
-          cmp-path
           nvim-lint
           conform-nvim
           lazygit-nvim
