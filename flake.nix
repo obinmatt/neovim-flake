@@ -40,6 +40,7 @@
           friendly-snippets
           nvim-lint
           conform-nvim
+          grug-far-nvim
           gitsigns-nvim
           which-key-nvim
           todo-comments-nvim
