@@ -24,26 +24,24 @@
           cyberdream-nvim
           lualine-nvim
           undotree
-          yazi-nvim
           mini-nvim
+          snacks-nvim
+          yazi-nvim
           nui-nvim
-          nvim-notify
           noice-nvim
           plenary-nvim
-          fzf-lua
           nvim-treesitter.withAllGrammars
           nvim-ts-context-commentstring
           nvim-ts-autotag
           nvim-lspconfig
+          fzf-lua
           blink-cmp
           luasnip
           friendly-snippets
           nvim-lint
           conform-nvim
-          lazygit-nvim
           gitsigns-nvim
           which-key-nvim
-          indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua
           nvim-web-devicons
