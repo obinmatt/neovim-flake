@@ -43,7 +43,6 @@
           lazygit-nvim
           gitsigns-nvim
           which-key-nvim
-          inc-rename-nvim
           indent-blankline-nvim
           todo-comments-nvim
           nvim-colorizer-lua
