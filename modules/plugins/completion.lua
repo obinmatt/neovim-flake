@@ -2,7 +2,11 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip").config.setup({})
 
 require("blink.cmp").setup({
-	keymap = { preset = "default" },
+	keymap = {
+		preset = "default",
+		["<Tab>"] = {},
+		["<S-Tab>"] = {},
+	},
 	appearance = {
 		use_nvim_cmp_as_default = false,
 		nerd_font_variant = "mono",
