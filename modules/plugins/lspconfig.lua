@@ -4,6 +4,8 @@ local snacks = require("snacks")
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = 0 })
+
 		local map = function(keys, func, desc)
 			vim.keymap.set("n", keys, func, { buffer = event.buf, noremap = true, silent = true, desc = desc })
 		end
@@ -48,42 +50,51 @@ lspconfig.lua_ls.setup({
 			},
 			telemetry = { enable = false },
 			completion = { callSnippet = "Replace" },
+			hint = { enable = true },
 		},
 	},
 })
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
 
-local inlayHintsSettings = {
-	includeInlayEnumMemberValueHints = true,
-	includeInlayFunctionLikeReturnTypeHints = true,
-	includeInlayFunctionParameterTypeHints = true,
-	includeInlayParameterNameHints = "literals",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-	includeInlayPropertyDeclarationTypeHints = true,
-	includeInlayVariableTypeHints = false,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+local vtslsLanguage = {
+	updateImportsOnFileMove = { enabled = "always" },
+	suggest = { completeFunctionCalls = true },
+	inlayHints = {
+		enumMemberValues = { enabled = true },
+		functionLikeReturnTypes = { enabled = true },
+		parameterNames = { enabled = "literals" },
+		parameterTypes = { enabled = true },
+		propertyDeclarationTypes = { enabled = true },
+		variableTypes = { enabled = false },
+	},
 }
 
-local function organizeImports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	}
-	vim.lsp.buf.execute_command(params)
-end
-
-lspconfig.ts_ls.setup({
+lspconfig.vtsls.setup({
 	capabilities = capabilities,
 	single_file_support = false,
 	settings = {
-		typescript = { inlayHints = inlayHintsSettings },
-		javascript = { inlayHints = inlayHintsSettings },
-		completions = { completeFunctionCalls = true },
+		complete_function_calls = true,
+		vtsls = {
+			enableMoveToFileCodeAction = true,
+			autoUseWorkspaceTsdk = true,
+			experimental = {
+				maxInlayHintLength = 30,
+				completion = { enableServerSideFuzzyMatch = true },
+			},
+		},
+		typescript = vtslsLanguage,
+		javascript = vtslsLanguage,
 	},
 	commands = {
 		OrganizeImports = {
-			organizeImports,
+			function()
+				local params = {
+					command = "typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+				}
+				vim.lsp.buf.execute_command(params)
+			end,
 			description = "Organize Imports",
 		},
 	},

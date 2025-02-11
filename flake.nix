@@ -51,13 +51,11 @@
 
         dependencies = with pkgs; [
           jq
-          fd
-          fzf
           git
           yazi
           lazygit
           ripgrep
-          nodePackages.typescript-language-server
+          vtsls
           nodePackages.prettier
           eslint_d
           lua-language-server
