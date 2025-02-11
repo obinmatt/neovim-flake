@@ -80,7 +80,7 @@ lspconfig.ts_ls.setup({
 		OrganizeImports = {
 			function()
 				local params = {
-					command = "typescript.organizeImports",
+					command = "_typescript.organizeImports",
 					arguments = { vim.api.nvim_buf_get_name(0) },
 				}
 				vim.lsp.buf.execute_command(params)
