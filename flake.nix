@@ -55,7 +55,7 @@
           yazi
           lazygit
           ripgrep
-          vtsls
+          nodePackages.typescript-language-server
           nodePackages.prettier
           eslint_d
           lua-language-server

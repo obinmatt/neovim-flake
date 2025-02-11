@@ -57,34 +57,24 @@ lspconfig.lua_ls.setup({
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
 
-local vtslsLanguage = {
-	updateImportsOnFileMove = { enabled = "always" },
-	suggest = { completeFunctionCalls = true },
-	inlayHints = {
-		enumMemberValues = { enabled = true },
-		functionLikeReturnTypes = { enabled = true },
-		parameterNames = { enabled = "literals" },
-		parameterTypes = { enabled = true },
-		propertyDeclarationTypes = { enabled = true },
-		variableTypes = { enabled = false },
-	},
+local inlayHintsSettings = {
+	includeInlayEnumMemberValueHints = true,
+	includeInlayFunctionLikeReturnTypeHints = true,
+	includeInlayFunctionParameterTypeHints = false,
+	includeInlayParameterNameHints = "none",
+	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	includeInlayPropertyDeclarationTypeHints = false,
+	includeInlayVariableTypeHints = false,
+	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 }
 
-lspconfig.vtsls.setup({
+lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	single_file_support = false,
 	settings = {
-		complete_function_calls = true,
-		vtsls = {
-			enableMoveToFileCodeAction = true,
-			autoUseWorkspaceTsdk = true,
-			experimental = {
-				maxInlayHintLength = 30,
-				completion = { enableServerSideFuzzyMatch = true },
-			},
-		},
-		typescript = vtslsLanguage,
-		javascript = vtslsLanguage,
+		typescript = { inlayHints = inlayHintsSettings },
+		javascript = { inlayHints = inlayHintsSettings },
+		completions = { completeFunctionCalls = true },
 	},
 	commands = {
 		OrganizeImports = {
