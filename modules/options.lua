@@ -91,6 +91,9 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 	border = "single",
 })
 
+-- turn off lsp logs by default
+vim.lsp.set_log_level("off")
+
 -- disable some builtin plugins
 vim.g.loaded_gzip = 0
 vim.g.loaded_tar = 0

@@ -57,30 +57,42 @@ lspconfig.lua_ls.setup({
 
 lspconfig.nil_ls.setup({ capabilities = capabilities })
 
-local inlayHintsSettings = {
-	includeInlayEnumMemberValueHints = true,
-	includeInlayFunctionLikeReturnTypeHints = true,
-	includeInlayFunctionParameterTypeHints = false,
-	includeInlayParameterNameHints = "none",
-	includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-	includeInlayPropertyDeclarationTypeHints = false,
-	includeInlayVariableTypeHints = false,
-	includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+local vtslsLang = {
+	updateImportsOnFileMove = { enabled = "always" },
+	suggest = { completeFunctionCalls = true },
+	inlayHints = {
+		enumMemberValues = { enabled = true },
+		functionLikeReturnTypes = { enabled = true },
+		parameterNames = { enabled = "none" },
+		parameterTypes = { enabled = false },
+		propertyDeclarationTypes = { enabled = false },
+		variableTypes = { enabled = false },
+	},
 }
 
-lspconfig.ts_ls.setup({
+lspconfig.vtsls.setup({
 	capabilities = capabilities,
 	single_file_support = false,
 	settings = {
-		typescript = { inlayHints = inlayHintsSettings },
-		javascript = { inlayHints = inlayHintsSettings },
-		completions = { completeFunctionCalls = true },
+		complete_function_calls = true,
+		vtsls = {
+			enableMoveToFileCodeAction = true,
+			autoUseWorkspaceTsdk = true,
+			experimental = {
+				maxInlayHintLength = 30,
+				completion = {
+					enableServerSideFuzzyMatch = true,
+				},
+			},
+		},
+		typescript = vtslsLang,
+		javascript = vtslsLang,
 	},
 	commands = {
 		OrganizeImports = {
 			function()
 				local params = {
-					command = "_typescript.organizeImports",
+					command = "typescript.organizeImports",
 					arguments = { vim.api.nvim_buf_get_name(0) },
 				}
 				vim.lsp.buf.execute_command(params)
