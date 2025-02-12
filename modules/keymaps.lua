@@ -6,10 +6,6 @@ local mapn = function(keys, func, desc)
 	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
 end
 
-local mapv = function(keys, func, desc)
-	vim.keymap.set("v", keys, func, { noremap = true, silent = true, desc = desc })
-end
-
 mapn("<leader>y", "<cmd>Yazi<cr>", "Toggle Yazi")
 mapn("<leader>a", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Rename word under cursor")
 mapn("<leader>ss", "<cmd>split<cr>", "Split window horizontally")
@@ -28,6 +24,3 @@ mapn("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic message")
 mapn("]d", vim.diagnostic.goto_next, "Go to next diagnostic message")
 mapn("n", "nzzzv", "Keep search word centered")
 mapn("N", "Nzzzv", "Keep search word centered")
-
-mapv("J", ":m '>+1<cr>gv=gv", "Move highlighted line down")
-mapv("K", ":m '<-2<cr>gv=gv", "Move highlighted line up")
