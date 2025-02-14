@@ -4,8 +4,6 @@ local snacks = require("snacks")
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = 0 })
-
 		local map = function(keys, func, desc)
 			vim.keymap.set("n", keys, func, { buffer = event.buf, noremap = true, silent = true, desc = desc })
 		end
@@ -30,6 +28,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				buffer = event.buf,
 				callback = vim.lsp.buf.clear_references,
 			})
+		end
+
+		if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+			map("<leader>th", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+			end, "[T]oggle Inlay [H]ints")
 		end
 	end,
 })
@@ -63,9 +67,9 @@ local vtslsLang = {
 	inlayHints = {
 		enumMemberValues = { enabled = true },
 		functionLikeReturnTypes = { enabled = true },
-		parameterNames = { enabled = "none" },
-		parameterTypes = { enabled = false },
-		propertyDeclarationTypes = { enabled = false },
+		parameterNames = { enabled = "literals" },
+		parameterTypes = { enabled = true },
+		propertyDeclarationTypes = { enabled = true },
 		variableTypes = { enabled = false },
 	},
 }
