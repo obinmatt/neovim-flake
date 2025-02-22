@@ -26,6 +26,7 @@
           undotree
           mini-nvim
           snacks-nvim
+          trouble-nvim
           yazi-nvim
           nui-nvim
           noice-nvim
