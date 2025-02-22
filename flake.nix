@@ -58,6 +58,7 @@
           ripgrep
           ast-grep
           vtsls
+          prettierd
           nodePackages.prettier
           eslint_d
           lua-language-server
