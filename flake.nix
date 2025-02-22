@@ -43,18 +43,19 @@
           gitsigns-nvim
           which-key-nvim
           todo-comments-nvim
-          nvim-colorizer-lua
           nvim-web-devicons
           vim-illuminate
           neogen
         ];
 
         dependencies = with pkgs; [
+          fd
           jq
           git
           yazi
           lazygit
           ripgrep
+          ast-grep
           vtsls
           nodePackages.prettier
           eslint_d

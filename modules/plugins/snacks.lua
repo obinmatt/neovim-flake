@@ -6,7 +6,6 @@ snacks.setup({
 	notifier = { enabled = true },
 	scope = { enabled = true },
 	scroll = { enabled = true },
-	toggle = { enabled = true },
 	bigfile = { enabled = true },
 	lazygit = { enabled = true },
 	dashboard = {
@@ -22,14 +21,14 @@ snacks.setup({
 	},
 })
 
-local mapn = function(keys, func, desc)
-	vim.keymap.set("n", keys, func, { noremap = true, silent = true, desc = desc })
+local map = function(keys, func, desc)
+	vim.keymap.set("n", keys, func, { desc = desc })
 end
 
-mapn("<leader>gg", snacks.lazygit.open, "Toggle Lazygit")
-mapn("<leader>ff", snacks.picker.files, "Find Files")
-mapn("<leader>fg", snacks.picker.grep, "Grep")
-mapn("<leader><leader>", function()
+map("<leader>gg", snacks.lazygit.open, "Toggle lazygit")
+map("<leader>ff", snacks.picker.files, "Find files")
+map("<leader>fg", snacks.picker.files, "Find grep")
+map("<leader><leader>", function()
 	snacks.picker.buffers({
 		-- start in normal mode
 		on_show = function()

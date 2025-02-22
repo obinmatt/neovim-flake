@@ -25,3 +25,11 @@ require("mini.comment").setup({
 		end,
 	},
 })
+
+local hipatterns = require("mini.hipatterns")
+hipatterns.setup({
+	highlighters = {
+		-- highlight hex color strings (`#rrggbb`) using that color
+		hex_color = hipatterns.gen_highlighter.hex_color(),
+	},
+})

@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
-		vim.highlight.on_yank()
+		(vim.hl or vim.highlight).on_yank()
 	end,
 })
 
@@ -49,10 +49,46 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("close_with_q"),
+	pattern = {
+		"PlenaryTestPopup",
+		"checkhealth",
+		"grug-far",
+		"help",
+		"lspinfo",
+		"notify",
+		"startuptime",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.schedule(function()
+			vim.keymap.set("n", "q", function()
+				vim.cmd("close")
+				pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+			end, {
+				buffer = event.buf,
+				silent = true,
+				desc = "Quit buffer",
+			})
+		end)
+	end,
+})
+
+-- make it easier to close man-files when opened inline
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("man_unlisted"),
+	pattern = { "man" },
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+	end,
+})
+
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("wrap_spell"),
-	pattern = { "gitcommit", "markdown" },
+	pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true

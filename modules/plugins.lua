@@ -1,4 +1,3 @@
-require("modules.plugins.colorizer")
 require("modules.plugins.completion")
 require("modules.plugins.conform")
 require("modules.plugins.cyberdream")
@@ -12,8 +11,8 @@ require("modules.plugins.noice")
 require("modules.plugins.snacks")
 require("modules.plugins.todo-comments")
 require("modules.plugins.treesitter")
+require("modules.plugins.yazi")
 
 -- plugins without extensive config
 require("neogen").setup({})
 require("which-key").setup({ preset = "helix" })
-require("yazi").setup({ open_for_directories = true })
