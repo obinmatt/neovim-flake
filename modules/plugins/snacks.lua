@@ -27,7 +27,7 @@ end
 
 map("<leader>gg", snacks.lazygit.open, "Toggle lazygit")
 map("<leader>ff", snacks.picker.files, "Find files")
-map("<leader>fg", snacks.picker.files, "Find grep")
+map("<leader>fg", snacks.picker.grep, "Find grep")
 map("<leader><leader>", function()
 	snacks.picker.buffers({
 		-- start in normal mode
