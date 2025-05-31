@@ -39,7 +39,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 200
 vim.opt.timeoutlen = 300
 
 -- configure how window splits should be opened
@@ -68,31 +68,9 @@ vim.opt.spelloptions = "camel"
 -- disable line wrapping
 vim.opt.wrap = false
 
--- when finding files search down into subfolders
-vim.opt.path:append({ "**" })
-
 -- cmd line completion
 vim.opt.wildmenu = true
 vim.opt.wildmode = "list:longest"
-
--- set diagnostic styling
-vim.diagnostic.config({
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
-	float = { border = "single" },
-})
-
--- set lsp styling
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "single",
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp, {
-	border = "single",
-})
-
--- turn off lsp logs by default
-vim.lsp.set_log_level("off")
 
 -- disable some builtin plugins
 vim.g.loaded_gzip = 0

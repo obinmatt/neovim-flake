@@ -15,5 +15,5 @@ require("modules.plugins.treesitter")
 require("modules.plugins.yazi")
 
 -- plugins without extensive config
-require("neogen").setup({})
+require("guess-indent").setup({})
 require("which-key").setup({ preset = "helix" })

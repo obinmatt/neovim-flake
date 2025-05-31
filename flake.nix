@@ -1,5 +1,5 @@
 {
-  description = "My personal neovim configuration";
+  description = "My neovim configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -46,7 +46,7 @@
           todo-comments-nvim
           nvim-web-devicons
           vim-illuminate
-          neogen
+          guess-indent-nvim
         ];
 
         dependencies = with pkgs; [
@@ -59,7 +59,6 @@
           ast-grep
           vtsls
           prettierd
-          nodePackages.prettier
           eslint_d
           lua-language-server
           stylua

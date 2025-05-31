@@ -55,11 +55,16 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"PlenaryTestPopup",
 		"checkhealth",
+		"dbout",
+		"gitsigns-blame",
 		"grug-far",
 		"help",
 		"lspinfo",
 		"notify",
+		"qf",
+		"spectre_panel",
 		"startuptime",
+		"tsplayground",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
@@ -101,5 +106,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "json", "jsonc", "json5" },
 	callback = function()
 		vim.opt_local.conceallevel = 0
+	end,
+})
+
+-- auto create dir when saving a file, in case some intermediate directory does not exist
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	group = augroup("auto_create_dir"),
+	callback = function(event)
+		if event.match:match("^%w%w+:[\\/][\\/]") then
+			return
+		end
+		local file = vim.uv.fs_realpath(event.match) or event.match
+		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })

@@ -9,4 +9,4 @@ vim.keymap.set("n", "<leader>sr", function()
 			filesFilter = ext and ext ~= "" and "*." .. ext or nil,
 		},
 	})
-end, { noremap = true, silent = true, desc = "Search and replace" })
+end, { desc = "Search and replace" })

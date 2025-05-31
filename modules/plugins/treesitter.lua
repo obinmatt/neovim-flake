@@ -1,14 +1,11 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = {},
+	modules = {},
 	sync_install = false,
 	auto_install = false,
+	ensure_installed = {},
 	ignore_install = { "all" },
-	highlight = {
-		enable = true,
-	},
-	indent = {
-		enable = true,
-	},
+	highlight = { enable = true },
+	indent = { enable = true },
 })
 
 require("ts_context_commentstring").setup({

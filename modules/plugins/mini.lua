@@ -9,7 +9,6 @@ require("mini.move").setup({
 		right = "L",
 		down = "J",
 		up = "K",
-
 		-- normal mode
 		line_left = "H",
 		line_right = "L",

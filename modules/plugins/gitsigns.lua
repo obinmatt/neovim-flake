@@ -29,7 +29,9 @@ require("gitsigns").setup({
 				gs.nav_hunk("prev")
 			end
 		end, "Prev hunk")
-		map("<leader>ghr", gs.reset_hunk, "Reset Hunk")
+		map("<leader>ghs", gs.stage_hunk, "Stage buffer")
+		map("<leader>ghr", gs.reset_hunk, "Reset hunk")
+		map("<leader>ghS", gs.stage_buffer, "Stage buffer")
 		map("<leader>ghR", gs.reset_buffer, "Reset buffer")
 		map("<leader>ghp", gs.preview_hunk_inline, "Preview hunk inline")
 		map("<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame line")
