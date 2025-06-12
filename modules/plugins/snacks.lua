@@ -30,6 +30,7 @@ local map = function(keys, func, desc)
 end
 
 map("<leader>ff", snacks.picker.files, "Find files")
+map("<leader>fr", snacks.picker.recent, "Find recent")
 map("<leader>fg", snacks.picker.grep, "Find grep")
 map("<leader>gg", snacks.lazygit.open, "Lazygit")
 map("<leader>z", snacks.zen.zen, "Zen mode")
