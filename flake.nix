@@ -53,6 +53,7 @@
           fd
           jq
           git
+          zig
           yazi
           lazygit
           ripgrep
@@ -64,6 +65,7 @@
           stylua
           nil
           alejandra
+          imagemagick_light
         ];
 
         defaultPlugin = {
