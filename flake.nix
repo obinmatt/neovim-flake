@@ -16,7 +16,7 @@
       system: let
         pkgs = import nixpkgs {
           inherit system;
-          config = {};
+          config = {allowUnfree = true;};
           overlays = [];
         };
 
@@ -36,6 +36,8 @@
           nvim-ts-autotag
           nvim-lspconfig
           blink-cmp
+          blink-copilot
+          copilot-vim
           luasnip
           friendly-snippets
           nvim-lint
