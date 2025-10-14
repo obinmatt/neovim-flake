@@ -36,7 +36,6 @@
           nvim-ts-autotag
           nvim-lspconfig
           blink-cmp
-          blink-copilot
           copilot-vim
           luasnip
           friendly-snippets
