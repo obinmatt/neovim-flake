@@ -31,6 +31,7 @@
           nui-nvim
           noice-nvim
           plenary-nvim
+          nvim-treesitter-context
           nvim-treesitter.withAllGrammars
           nvim-ts-context-commentstring
           nvim-ts-autotag

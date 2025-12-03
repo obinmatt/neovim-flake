@@ -8,8 +8,11 @@ require("nvim-treesitter.configs").setup({
 	indent = { enable = true },
 })
 
+require("nvim-ts-autotag").setup()
 require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
 
-require("nvim-ts-autotag").setup()
+vim.keymap.set("n", "[c", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })
