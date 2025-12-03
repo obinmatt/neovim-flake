@@ -43,10 +43,8 @@
           nvim-lint
           conform-nvim
           grug-far-nvim
-          diffview-nvim
           gitsigns-nvim
           which-key-nvim
-          refactoring-nvim
           todo-comments-nvim
           nvim-web-devicons
           vim-illuminate
