@@ -21,34 +21,34 @@
         };
 
         plugins = with pkgs.vimPlugins; [
+          blink-cmp
+          conform-nvim
+          copilot-lua
           cyberdream-nvim
+          friendly-snippets
+          gitsigns-nvim
+          grug-far-nvim
+          guess-indent-nvim
+          luasnip
           lualine-nvim
-          undotree
           mini-nvim
-          snacks-nvim
-          trouble-nvim
-          yazi-nvim
-          nui-nvim
           noice-nvim
-          plenary-nvim
+          nui-nvim
+          nvim-lint
+          nvim-lspconfig
           nvim-treesitter-context
           nvim-treesitter.withAllGrammars
-          nvim-ts-context-commentstring
           nvim-ts-autotag
-          nvim-lspconfig
-          blink-cmp
-          copilot-lua
-          luasnip
-          friendly-snippets
-          nvim-lint
-          conform-nvim
-          grug-far-nvim
-          gitsigns-nvim
-          which-key-nvim
-          todo-comments-nvim
+          nvim-ts-context-commentstring
           nvim-web-devicons
+          plenary-nvim
+          snacks-nvim
+          todo-comments-nvim
+          trouble-nvim
+          undotree
           vim-illuminate
-          guess-indent-nvim
+          which-key-nvim
+          yazi-nvim
         ];
 
         dependencies = with pkgs; [
