@@ -1,5 +1,6 @@
 require("modules.plugins.completion")
 require("modules.plugins.conform")
+require("modules.plugins.copilot")
 require("modules.plugins.cyberdream")
 require("modules.plugins.diffview")
 require("modules.plugins.gitsigns")
