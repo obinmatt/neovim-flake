@@ -53,22 +53,22 @@
         ];
 
         dependencies = with pkgs; [
-          fd
-          jq
-          git
-          zig
-          yazi
-          lazygit
-          ripgrep
-          ast-grep
-          vtsls
-          prettierd
-          eslint_d
-          lua-language-server
-          stylua
-          nil
           alejandra
+          ast-grep
+          eslint_d
+          fd
+          git
           imagemagick_light
+          jq
+          lazygit
+          lua-language-server
+          nil
+          prettierd
+          ripgrep
+          stylua
+          vtsls
+          yazi
+          zig
         ];
 
         defaultPlugin = {
