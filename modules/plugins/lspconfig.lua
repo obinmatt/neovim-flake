@@ -34,11 +34,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("K", vim.lsp.buf.hover, "Hover")
 		map("gd", snacks.picker.lsp_definitions, "Goto definition")
 		map("gr", snacks.picker.lsp_references, "References")
-		map("gI", snacks.picker.lsp_implementations, "Goto Implementation")
-		map("gy", snacks.picker.lsp_type_definitions, "Goto T[y]pe Definition")
+		map("gI", snacks.picker.lsp_implementations, "Goto implementation")
+		map("gy", snacks.picker.lsp_type_definitions, "Goto type definition")
 		map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 		map("<leader>cr", vim.lsp.buf.rename, "Rename")
 		map("<leader>cR", vim.lsp.buf.rename, "Rename file")
+		map("<leader>co", function()
+			vim.lsp.buf.code_action({
+				apply = true,
+				context = {
+					only = { "source.organizeImports" },
+					diagnostics = {},
+				},
+			})
+		end, "Organize imports")
 
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -116,22 +125,5 @@ lspconfig.vtsls.setup({
 		},
 		typescript = vtslsLang,
 		javascript = vtslsLang,
-	},
-	commands = {
-		OrganizeImports = {
-			function()
-				vim.lsp.buf_request(0, "workspace/executeCommand", {
-					command = "typescript.organizeImports",
-					arguments = { vim.api.nvim_buf_get_name(0) },
-				}, function(err)
-					if err then
-						vim.notify("Failed to organize imports: " .. err.message, vim.log.levels.ERROR)
-					else
-						vim.notify("Imports organized successfully", vim.log.levels.INFO)
-					end
-				end)
-			end,
-			description = "Organize imports",
-		},
 	},
 })
