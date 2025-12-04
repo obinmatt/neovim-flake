@@ -29,6 +29,7 @@
           gitsigns-nvim
           grug-far-nvim
           guess-indent-nvim
+          lazydev-nvim
           luasnip
           lualine-nvim
           mini-nvim
