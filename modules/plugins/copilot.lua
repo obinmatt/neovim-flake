@@ -10,4 +10,11 @@ require("copilot").setup({
 		markdown = true,
 		help = true,
 	},
+	server_opts_overrides = {
+		settings = {
+			telemetry = {
+				telemetryLevel = "off",
+			},
+		},
+	},
 })
