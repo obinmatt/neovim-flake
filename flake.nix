@@ -45,7 +45,6 @@
           plenary-nvim
           snacks-nvim
           todo-comments-nvim
-          trouble-nvim
           undotree
           vim-illuminate
           which-key-nvim

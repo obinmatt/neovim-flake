@@ -12,7 +12,6 @@ require("modules.plugins.mini")
 require("modules.plugins.noice")
 require("modules.plugins.snacks")
 require("modules.plugins.todo-comments")
-require("modules.plugins.trouble")
 require("modules.plugins.treesitter")
 require("modules.plugins.yazi")
 
