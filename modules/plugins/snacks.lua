@@ -25,6 +25,12 @@ snacks.setup({
 	zen = { enabled = true },
 })
 
+-- ensure cache directory exists for lazygit
+local cache_dir = vim.fn.expand("$HOME/.cache/nvim")
+if vim.fn.isdirectory(cache_dir) == 0 then
+	vim.fn.mkdir(cache_dir, "p")
+end
+
 local map = function(keys, func, desc)
 	vim.keymap.set("n", keys, func, { desc = desc })
 end
