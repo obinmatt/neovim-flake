@@ -1,5 +1,5 @@
-local lspconfig = require("lspconfig")
-local snacks = require("snacks")
+-- default to 'off' to prevent slowdowns with typescript
+vim.lsp.set_log_level("off")
 
 vim.diagnostic.config({
 	underline = true,
@@ -21,9 +21,6 @@ vim.diagnostic.config({
 	float = { border = "single" },
 })
 
--- default to 'off' to prevent slowdowns with typescript
-vim.lsp.set_log_level("off")
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
@@ -32,10 +29,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		map("K", vim.lsp.buf.hover, "Hover")
-		map("gd", snacks.picker.lsp_definitions, "Goto definition")
-		map("gr", snacks.picker.lsp_references, "References")
-		map("gI", snacks.picker.lsp_implementations, "Goto implementation")
-		map("gy", snacks.picker.lsp_type_definitions, "Goto type definition")
+		map("gd", require("snacks").picker.lsp_definitions, "Goto definition")
+		map("gr", require("snacks").picker.lsp_references, "References")
+		map("gI", require("snacks").picker.lsp_implementations, "Goto implementation")
+		map("gy", require("snacks").picker.lsp_type_definitions, "Goto type definition")
 		map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 		map("<leader>cr", vim.lsp.buf.rename, "Rename")
 		map("<leader>cR", vim.lsp.buf.rename, "Rename file")
@@ -56,7 +53,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			config.border = "single"
 			vim.lsp.handlers.default_handler(err, result, ctx, config)
 		end
-
 		if client and client.server_capabilities.hover_provider then
 			client.handlers["textDocument/hover"] = single_border_handler
 		end
@@ -64,16 +60,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			client.handlers["textDocument/signatureHelp"] = single_border_handler
 		end
 
-		-- resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-		local function client_supports_method(client, method, bufnr)
-			if vim.fn.has("nvim-0.11") == 1 then
-				return client:supports_method(method, bufnr)
-			else
-				return client.supports_method(method, { bufnr = bufnr })
-			end
-		end
-
-		if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
 			map("<leader>th", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 			end, "Toggle inlay hints")
@@ -83,7 +70,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -94,8 +81,10 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+vim.lsp.enable("lua_ls")
 
-lspconfig.nil_ls.setup({ capabilities = capabilities })
+vim.lsp.config("nil_ls", { capabilities = capabilities })
+vim.lsp.enable("nil_ls")
 
 local vtslsLang = {
 	updateImportsOnFileMove = { enabled = "always" },
@@ -110,7 +99,7 @@ local vtslsLang = {
 	},
 }
 
-lspconfig.vtsls.setup({
+vim.lsp.config("vtsls", {
 	capabilities = capabilities,
 	single_file_support = false,
 	settings = {
@@ -127,3 +116,4 @@ lspconfig.vtsls.setup({
 		javascript = vtslsLang,
 	},
 })
+vim.lsp.enable("vtsls")
